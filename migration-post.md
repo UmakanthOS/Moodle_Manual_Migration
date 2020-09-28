@@ -19,7 +19,7 @@
             -   Ex: /var/log/syslogs/moodle/access.log
             -   Ex: /var/log/syslogs/moodle/error.log 
          - Update log files location
-            ```
+            ```bash
             nano /etc/nginx/nginx.conf
             # Above command will open the configuration file.
             # 
@@ -33,7 +33,7 @@
     -   **Restart Servers**
         
         -   Restart the nginx and php-fpm servers.
-            ```
+            ```bash
             sudo systemctl restart nginx
             sudo systemctl restart php<phpVersion>-fpm
             ```
@@ -46,26 +46,26 @@
          
         -   Copy over the .crt and .key files over to /moodle/certs/. The file names should be changed to nginx.crt and nginx.key in order to be recognized by the configured nginx servers. Depending on your local environment, you may choose to use the utility SCP or a tool like WinSCP to copy these files over to the controller virtual machine.
             -   Command to change the certs name.
-                ```
+                ```bash
                 cd /path/to/certs/location
                 mv /path/to/certs/location/*.key /moodle/certs/nginx.key
                 mv /path/to/certs/location/*.crt /moodle/certs/nginx.crt
                 ```
         -   You can also generate a self-signed certificate, useful for testing only.
             
-            ```
+            ```bash
             openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
             -keyout /moodle/certs/nginx.key \
             -out /moodle/certs/nginx.crt \
             -subj "/C=US/ST=WA/L=Redmond/O=IT/CN=mydomain.com"
             ```
         -   It is recommended that the certificate files be read-only to owner and that these files are owned by www-data:www-data.
-            ```
+            ```bash
             chown www-data:www-data /moodle/certs/nginx.*
             chmod 400 /moodle/certs/nginx.*
             ```
         -   Update Certs location.
-            ```
+            ```bash
             nano /etc/nginx/sites-enabled/*.conf
             # Above command will open the configuration file.
             # 
@@ -83,7 +83,7 @@
         - Moodle html site (/moodle/html/moodle) content's local copy is created in VMSS at /var/www/html/moodle.
         - Local copy is updated only when there is an update in timestamp.
         -   Execute the below command from Controller Virtual Machine to update the timestamp. 
-            ```
+            ```bash
             sudo -s
             /usr/local/bin/update_last_modified_time.moodle_on_azure.sh
             ```
@@ -93,7 +93,7 @@
     -   **Restart Servers**
         
         -   Restart the nginx and php-fpm servers.
-            ```
+            ```bash
             sudo systemctl restart nginx
             sudo systemctl restart php<phpVersion>-fpm
             ```
@@ -102,11 +102,11 @@
         -   DNS name mapping with the load balancer IP must be done at the hosting provider level.
         -   Disable Moodle website from Maintenance mode.
             - Run the below command in Controller Virtual Machine.
-                ```
+                ```bash
                 sudo /usr/bin/php admin/cli/maintenance.php --disable
                 ```
             - To check the status of the moodle site run the below command.
-                ```
+                ```bash
                 sudo /usr/bin/php admin/cli/maintenance.php
                 ```
         -   Hit the DNS name to get the migrated Moodle web page.

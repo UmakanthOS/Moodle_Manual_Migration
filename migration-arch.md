@@ -9,9 +9,6 @@
     -   Setup Moodle controller instance and worker nodes. 
     -   Configuring PHP & webserver.
 
-<!-- <details>
-<summary>(For detailed steps click on expand!)</summary> -->
-
 ### Deploy Azure Infrastructure with Azure ARM Templates
 - Deploying Azure infrastructure using ARM template.
 - When using an ARM template to deploy infrastructure on Azure, you have a couple of available options.
@@ -29,7 +26,7 @@
 ![custom_deployment](images/customdeployment.png)
 - Above pre-defined templates will deploy the default versions.
     ```
-    Ubuntu: 18.04 LTS
+    Ubuntu: 18.04-LTS
     PHP: 7.4
     Moodle: 3.8
     ```
@@ -38,7 +35,7 @@
     
     ![image](images/edittemplate.png)
     - In the Resources section, add the moodle and php versions in the parameters block.
-        ```
+        ```json
         "phpVersion":       { "value": "7.2" },
         "moodleVersion":    { "value": "MOODLE_38_STABLE"}
 

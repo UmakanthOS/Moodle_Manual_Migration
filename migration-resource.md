@@ -58,4 +58,4 @@
     - Autoscaling of VM Instances depends on [CPU utilization](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/autoscale-overview).  
     - While scaling up an instance a VM is deployed and a shell script is executed to install the Moodle prerequisites and setting up cron jobs. 
     - VM instances have Private IP. 
-    - For connecting to VMs on Scale set with private IP, follow the steps written in the [document](https://github.com/asift91/Manual_Migration/blob/master/vpngateway.md). 
+    - For connecting to VMs on Scale set with private IP, follow the steps written in the [document](/vpngateway.md). 
